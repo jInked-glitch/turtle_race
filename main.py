@@ -1,5 +1,7 @@
 from turtle import Turtle, Screen
 import random
+import time
+import winsound
 
 is_race_on = False
 screen = Screen()
@@ -22,18 +24,56 @@ for turtle_index in range(len(colors)):
     all_turtles.append(new_turtle)
 
 if user_bet:
-    is_race_on = True
+    start_turtle = Turtle()
+    start_turtle.hideturtle()
+    start_turtle.penup()
+    start_turtle.goto(0, 0)
+    start_turtle.write("Ready...", align="center", font=("Courier", 16, "normal"))
+    time.sleep(1)
+    start_turtle.clear()
+
+    start_turtle.write("Set...", align="center", font=("Courier", 16, "normal"))
+    time.sleep(1)
+    start_turtle.clear()
+
+    start_turtle.write("Go!", align="center", font=("Courier", 16, "normal"))
+
+    winsound.PlaySound("start.wav", winsound.SND_FILENAME)
+
+    # time.sleep(0.5)
+    start_turtle.clear()
+
+is_race_on = True
+finish_line = 230
+winners = []
 
 while is_race_on:
     for turtle in all_turtles:
-        if turtle.xcor() > 230:
-            is_race_on =  False
-            winning_color = turtle.pencolor()
-            if winning_color == user_bet:
-                print(f"You've won: The {winning_color} turtle is the winner! ")
-            else:
-                print(f"You've lost: The {winning_color} turtle is the winner! ")
-        rand_distance = random.randint(0, 10)
-        turtle.forward(rand_distance)
+        random_distance = random.randint(0, 10)
+        turtle.forward(random_distance)
+
+        if turtle.xcor() >= finish_line:
+            winners.append(turtle.pencolor())
+            is_race_on = False  # 一旦止める（必要に応じて条件を工夫）
+
+# 同着も考慮した勝敗判定
+winners = list(set(winners))
+message_turtle = Turtle()
+message_turtle.penup()
+message_turtle.goto(0, 0)
+
+if user_bet in winners:
+    if len(winners) == 1:
+        message_turtle.color(user_bet)
+        message_turtle.write(f"You've won! \nThe {user_bet} turtle is the winner!", align = "center", font =("Courier", 16, "normal"))
+        winsound.PlaySound("yeah.wav", winsound.SND_FILENAME)
+    else:
+        message_turtle.color(user_bet)
+        message_turtle.write(f"It's a tie! \nYou bet on one of the winners: {user_bet}.\nWinning turtles: {', '.join(winners)}", align = "center", font =("Courier", 16, "normal"))
+        winsound.PlaySound("yeah.wav", winsound.SND_FILENAME)
+else:
+    message_turtle.color("black")
+    message_turtle.write(f"You've lost.\nWinning turtle(s): {', '.join(winners)}", align = "center", font =("Courier", 16, "normal"))
+    winsound.PlaySound("lost.wav", winsound.SND_FILENAME)
 
 screen.exitonclick()
