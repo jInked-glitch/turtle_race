@@ -1,3 +1,18 @@
+## 🎬 New Features Added! 10 May 2025
+
+This updated turtle race project includes the following enhancements:
+
+- 🎯 **Tie Detection**: When multiple turtles cross the finish line in the same round, it's recognized as a draw. If your bet is among the winners, you still win!
+- 🌈 **Winning Message in Color**: The winning message appears in the same color as the turtle you bet on.
+- 🧨 **Start Animation**: "Ready... Set... Go!" is shown on the screen before the race begins.
+- 🔊 **Sound Effects**:
+  - A start sound plays when the race begins.
+  - A cheering sound for a win or draw.
+  - A sad sound if your turtle loses.
+
+> Try placing your bet and enjoy the excitement! 🐢🎉
+
+
 # 🐢 Turtle Race Game
 
 A colorful turtle race game built using Python's built-in `turtle` module.  
