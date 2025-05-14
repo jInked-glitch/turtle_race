@@ -49,7 +49,7 @@ This version includes full game loop support and polished design:
 
 ## 📁 Project Structure
 
-turtle_race/
+'''turtle_race/
 ├── main.py # Entry point & game loop
 ├── racing_turtle.py # RacingTurtle class with all logic
 ├── start.wav # Start race sound
@@ -57,7 +57,7 @@ turtle_race/
 ├── lost.wav # Lose sound
 └── README.md
 └── docs/
-    └── racing_turtle_notes.md
+    └── racing_turtle_notes.md'''
 ---
 
 ## 🔧 Planned Features (To-Do)
